@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Sorpresa - 14 de Febrero</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5e6f8 0%, #fff0f5 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(196, 24, 93, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #d63384, #e83e8c);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .heart-decoration {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 3rem;
+        }
+        
+        .heart-1 { top: 10px; left: 10%; }
+        .heart-2 { top: 30px; right: 15%; }
+        .heart-3 { bottom: 20px; left: 20%; }
+        .heart-4 { bottom: 10px; right: 10%; }
+        
+        .content {
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .invitation-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: #555;
+        }
+        
+        .invitation-text .highlight {
+            color: #d63384;
+            font-weight: 600;
+        }
+        
+        .date-place {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .date, .place {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .date i, .place i {
+            font-size: 2.5rem;
+            color: #d63384;
+            margin-bottom: 15px;
+        }
+        
+        .date h3, .place h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .response-section {
+            margin-bottom: 50px;
+        }
+        
+        .response-section h2 {
+            color: #d63384;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 180px;
+        }
+        
+        .btn-yes {
+            background: linear-gradient(to right, #28a745, #20c997);
+            color: white;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn-no {
+            background: linear-gradient(to right, #dc3545, #e83e8c);
+            color: white;
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(-2px);
+        }
+        
+        .whatsapp-notification {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border-left: 5px solid #25d366;
+        }
+        
+        .whatsapp-notification h3 {
+            color: #25d366;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .whatsapp-notification h3 i {
+            font-size: 1.8rem;
+        }
+        
+        .whatsapp-notification p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .notification-code {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            color: #d63384;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 15px;
+            border: 2px dashed #25d366;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .message-display {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+            border: 2px solid #e83e8c;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .message-display h3 {
+            color: #d63384;
+            margin-bottom: 15px;
+        }
+        
+        .message-display p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            opacity: 0.8;
+            z-index: 10;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .date-place {
+                gap: 20px;
+            }
+            
+            .btn {
+                padding: 15px 35px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="heart-decoration heart-1"><i class="fas fa-heart"></i></div>
+            <div class="heart-decoration heart-2"><i class="fas fa-heart"></i></div>
+            <h1>Invitación Especial</h1>
+            <p>Una sorpresa te espera este 14 de febrero</p>
+            <div class="heart-decoration heart-3"><i class="fas fa-heart"></i></div>
+            <div class="heart-decoration heart-4"><i class="fas fa-heart"></i></div>
+        </div>
+        
+        <div class="content">
+            <div class="invitation-text">
+                <p>Querida <span class="highlight">[Nombre de la persona]</span>,</p>
+                <p>Me encantaría compartir contigo una <span class="highlight">sorpresa especial</span> este día del amor y la amistad.</p>
+                <p>¿Me harías el honor de acompañarme en una <span class="highlight">cita sorpresa</span> que he preparado con mucho cariño?</p>
+            </div>
+            
+            <div class="date-place">
+                <div class="date">
+                    <i class="far fa-calendar-alt"></i>
+                    <h3>Fecha</h3>
+                    <p>14 de Febrero</p>
+                    <p>19:00 horas</p>
+                </div>
+                
+                <div class="place">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Lugar</h3>
+                    <p>Te enviaré la ubicación</p>
+                    <p>una vez aceptes la invitación</p>
+                </div>
+            </div>
+            
+            <div class="response-section">
+                <h2>¿Aceptas mi invitación?</h2>
+                <div class="buttons">
+                    <button class="btn btn-yes" id="yesBtn">
+                        <i class="fas fa-heart"></i> ¡Sí, acepto!
+                    </button>
+                    <button class="btn btn-no" id="noBtn">
+                        <i class="fas fa-times"></i> No, esta vez no
+                    </button>
+                </div>
+            </div>
+            
+            <div class="whatsapp-notification">
+                <h3><i class="fab fa-whatsapp"></i> Notificación por WhatsApp</h3>
+                <p>Cuando respondas a esta invitación, recibirás una notificación en WhatsApp con un mensaje especial y más detalles sobre nuestra cita sorpresa.</p>
+                <p><strong>Código de confirmación:</strong></p>
+                <div class="notification-code" id="confirmationCode">AMOR-14FEB-2024</div>
+            </div>
+            
+            <div id="responseMessage" class="hidden message-display">
+                <!-- Mensaje dinámico aparecerá aquí -->
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Con cariño, <span class="highlight">[Tu nombre]</span> • Esta invitación es válida solo para el 14 de febrero</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const responseMessage = document.getElementById('responseMessage');
+            const confirmationCode = document.getElementById('confirmationCode');
+            
+            // Generar código de confirmación único
+            function generateConfirmationCode() {
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                let result = 'AMOR-';
+                for (let i = 0; i < 6; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * characters.length));
+                }
+                return result + '-14FEB';
+            }
+            
+            // Actualizar el código de confirmación
+            confirmationCode.textContent = generateConfirmationCode();
+            
+            // Función para crear confeti
+            function createConfetti() {
+                const container = document.querySelector('.container');
+                const colors = ['#d63384', '#e83e8c', '#ffc107', '#20c997', '#0d6efd'];
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    
+                    container.appendChild(confetti);
+                    
+                    // Animación del confeti
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 3000 + 2000,
+                        easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                    });
+                    
+                    // Eliminar el confeti después de la animación
+                    animation.onfinish = () => confetti.remove();
+                }
+            }
+            
+            // Función para enviar notificación simulada por WhatsApp
+            function sendWhatsAppNotification(response) {
+                // En un caso real, aquí iría el código para enviar una notificación real por WhatsApp
+                // Por ahora, simularemos el envío con un mensaje en consola
+                console.log(`Notificación WhatsApp enviada: El usuario ha respondido "${response}" a la invitación. Código: ${confirmationCode.textContent}`);
+                
+                // Mostrar un mensaje al usuario sobre la notificación
+                alert(`📱 Se ha enviado una notificación a tu WhatsApp con el código: ${confirmationCode.textContent}\n\nRevisa tus mensajes para más detalles sobre nuestra cita sorpresa.`);
+            }
+            
+            // Respuesta para el botón SÍ
+            yesBtn.addEventListener('click', function() {
+                responseMessage.innerHTML = `
+                    <h3><i class="fas fa-heart"></i> ¡Fantástico!</h3>
+                    <p>Me alegra mucho que aceptes mi invitación. ❤️</p>
+                    <p>En unos momentos recibirás un mensaje por WhatsApp con todos los detalles de nuestra cita sorpresa.</p>
+                    <p><strong>Prepárate para una noche inolvidable.</strong></p>
+                    <p>Código de confirmación: <span class="highlight">${confirmationCode.textContent}</span></p>
+                `;
+                responseMessage.classList.remove('hidden');
+                
+                // Crear efecto de confeti
+                createConfetti();
+                
+                // Enviar notificación por WhatsApp (simulada)
+                sendWhatsAppNotification("SÍ");
+                
+                // Desplazar la vista al mensaje
+                responseMessage.scrollIntoView({ behavior: 'smooth' });
+                
+                // Cambiar el código después de aceptar
+                confirmationCode.textContent = generateConfirmationCode();
+            });
+            
+            // Respuesta para el botón NO
+            noBtn.addEventListener('click', function() {
+                responseMessage.innerHTML = `
+                    <h3><i class="fas fa-heart-broken"></i> Entiendo tu decisión</h3>
+                    <p>Lamento que no puedas acompañarme esta vez. 😔</p>
+                    <p>Espero que tengas un excelente 14 de febrero.</p>
+                    <p>Si cambias de opinión, siempre estaré encantado de compartir este día especial contigo.</p>
+                `;
+                responseMessage.classList.remove('hidden');
+                
+                // Enviar notificación por WhatsApp (simulada)
+                sendWhatsAppNotification("NO");
+                
+                // Desplazar la vista al mensaje
+                responseMessage.scrollIntoView({ behavior: 'smooth' });
+                
+                // Cambiar el código después de rechazar
+                confirmationCode.textContent = generateConfirmationCode();
+            });
+            
+            // Efecto de texto parpadeante para el código
+            setInterval(() => {
+                confirmationCode.style.opacity = confirmationCode.style.opacity === '0.7' ? '1' : '0.7';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
