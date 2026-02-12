@@ -341,7 +341,7 @@
             
             <div class="whatsapp-notification">
                 <h3><i class="fab fa-whatsapp"></i> Notificación por WhatsApp</h3>
-                <p>Cuando respondas a esta invitación, recibirás una notificación en WhatsApp con un mensaje especial y más detalles sobre nuestra cita sorpresa.</p>
+                <p>Cuando respondas a esta invitación, serás redirigido a WhatsApp para confirmar tu respuesta.</p>
                 <p><strong>Código de confirmación:</strong></p>
                 <div class="notification-code" id="confirmationCode">AMOR-14FEB-2024</div>
             </div>
@@ -363,6 +363,9 @@
             const responseMessage = document.getElementById('responseMessage');
             const confirmationCode = document.getElementById('confirmationCode');
             
+            // Número de WhatsApp (código de país + número, sin espacios ni símbolos)
+            const phoneNumber = '51950654906'; // 51 es el código de Perú, 950654906 el número
+            
             // Generar código de confirmación único
             function generateConfirmationCode() {
                 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -371,6 +374,18 @@
                     result += characters.charAt(Math.floor(Math.random() * characters.length));
                 }
                 return result + '-14FEB';
+            }
+            
+            // Función para codificar mensaje para URL
+            function encodeMessage(message) {
+                return encodeURIComponent(message);
+            }
+            
+            // Función para abrir WhatsApp con mensaje
+            function openWhatsApp(message) {
+                const encodedMessage = encodeMessage(message);
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                window.open(whatsappUrl, '_blank');
             }
             
             // Actualizar el código de confirmación
@@ -406,35 +421,33 @@
                 }
             }
             
-            // Función para enviar notificación simulada por WhatsApp
-            function sendWhatsAppNotification(response) {
-                // En un caso real, aquí iría el código para enviar una notificación real por WhatsApp
-                // Por ahora, simularemos el envío con un mensaje en consola
-                console.log(`Notificación WhatsApp enviada: El usuario ha respondido "${response}" a la invitación. Código: ${confirmationCode.textContent}`);
-                
-                // Mostrar un mensaje al usuario sobre la notificación
-                alert(`📱 Se ha enviado una notificación a tu WhatsApp con el código: ${confirmationCode.textContent}\n\nRevisa tus mensajes para más detalles sobre nuestra cita sorpresa.`);
-            }
-            
             // Respuesta para el botón SÍ
             yesBtn.addEventListener('click', function() {
+                const code = confirmationCode.textContent;
+                
                 responseMessage.innerHTML = `
                     <h3><i class="fas fa-heart"></i> ¡Fantástico!</h3>
                     <p>Me alegra mucho que aceptes mi invitación. ❤️</p>
-                    <p>En unos momentos recibirás un mensaje por WhatsApp con todos los detalles de nuestra cita sorpresa.</p>
+                    <p>Serás redirigida a WhatsApp para confirmar tu asistencia.</p>
                     <p><strong>Prepárate para una noche inolvidable.</strong></p>
-                    <p>Código de confirmación: <span class="highlight">${confirmationCode.textContent}</span></p>
+                    <p>Código de confirmación: <span class="highlight">${code}</span></p>
                 `;
                 responseMessage.classList.remove('hidden');
                 
                 // Crear efecto de confeti
                 createConfetti();
                 
-                // Enviar notificación por WhatsApp (simulada)
-                sendWhatsAppNotification("SÍ");
+                // Mensaje para WhatsApp cuando acepta
+                const whatsappMessage = `¡HOLA! ❤️%0A%0A` +
+                    `ACEPTO TU INVITACIÓN ESPECIAL PARA EL 14 DE FEBRERO 💕%0A%0A` +
+                    `✨ *Código de confirmación:* ${code}%0A` +
+                    `💌 *Mensaje:* Me encantará compartir esta noche especial contigo.%0A%0A` +
+                    `Espero los detalles de nuestra cita sorpresa. ¡Estoy emocionada! 🌹✨`;
                 
-                // Desplazar la vista al mensaje
-                responseMessage.scrollIntoView({ behavior: 'smooth' });
+                // Redirigir a WhatsApp
+                setTimeout(() => {
+                    openWhatsApp(whatsappMessage);
+                }, 1000);
                 
                 // Cambiar el código después de aceptar
                 confirmationCode.textContent = generateConfirmationCode();
@@ -442,19 +455,26 @@
             
             // Respuesta para el botón NO
             noBtn.addEventListener('click', function() {
+                const code = confirmationCode.textContent;
+                
                 responseMessage.innerHTML = `
                     <h3><i class="fas fa-heart-broken"></i> Entiendo tu decisión</h3>
                     <p>Lamento que no puedas acompañarme esta vez. 😔</p>
-                    <p>Espero que tengas un excelente 14 de febrero.</p>
+                    <p>Serás redirigida a WhatsApp para confirmar tu respuesta.</p>
                     <p>Si cambias de opinión, siempre estaré encantado de compartir este día especial contigo.</p>
                 `;
                 responseMessage.classList.remove('hidden');
                 
-                // Enviar notificación por WhatsApp (simulada)
-                sendWhatsAppNotification("NO");
+                // Mensaje para WhatsApp cuando rechaza
+                const whatsappMessage = `Hola, soy Alisson 💬%0A%0A` +
+                    `Lamento informarte que *NO PODRÉ ASISTIR* a la cita sorpresa del 14 de febrero 😔%0A%0A` +
+                    `✨ *Código de confirmación:* ${code}%0A%0A` +
+                    `Espero que puedas disfrutar de este día especial. ¡Gracias por la invitación! 🌷`;
                 
-                // Desplazar la vista al mensaje
-                responseMessage.scrollIntoView({ behavior: 'smooth' });
+                // Redirigir a WhatsApp
+                setTimeout(() => {
+                    openWhatsApp(whatsappMessage);
+                }, 1000);
                 
                 // Cambiar el código después de rechazar
                 confirmationCode.textContent = generateConfirmationCode();
